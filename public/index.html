@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ایجاد پوشه و فایل</title>
+</head>
+<body>
+    <h1>ایجاد پوشه و فایل جدید</h1>
+    <button id="createFile">ایجاد فایل</button>
+
+    <script>
+        document.getElementById('createFile').onclick = function() {
+            fetch('/create-file', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        };
+    </script>
+</body>
+</html>
