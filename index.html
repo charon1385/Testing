@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ساخت فایل</title>
+</head>
+<body>
+    <h1>ساخت فایل جدید</h1>
+    <button id="createFile">ایجاد فایل</button>
+
+    <script>
+        document.getElementById('createFile').onclick = function() {
+            const timestamp = new Date().toISOString();
+            const content = `این یک فایل جدید است: ${timestamp}`;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `file_${timestamp}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        };
+    </script>
+</body>
+</html>
